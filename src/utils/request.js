@@ -2,6 +2,7 @@
 import axios from "axios";
 import { message } from "antd";
 import { getToken, removeToken } from "./token";
+import router from "@/router";
 // import { UseSelector } from "react-redux";
 //1.根域名配置+超时时间
 // const [messageApi, contextHolder] = message.useMessage();
@@ -43,8 +44,8 @@ request.interceptors.response.use(function (response) {
   }
   if (error.response.status === 401) {
     removeToken()
-    window.location.hash = "/login"
-    return message.error(error.response.data.message)
+    router.navigate('/login')
+    window.location.reload()
   }
   return Promise.reject(error);
 });
