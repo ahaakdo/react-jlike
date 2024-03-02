@@ -43,7 +43,7 @@ request.interceptors.response.use(function (response) {
   }
   if (error.response.status === 401) {
     removeToken()
-    window.location.href = "/login"
+    window.location.hash = "/login"
     return message.error(error.response.data.message)
   }
   return Promise.reject(error);
