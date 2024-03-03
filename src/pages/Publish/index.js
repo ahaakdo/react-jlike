@@ -7,7 +7,8 @@ import {
   Input,
   Upload,
   Space,
-  Select
+  Select,
+  message
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
@@ -32,21 +33,37 @@ const Publish = () => {
     getChannelList()
   }, [])
   const formRef = useRef()
+  //获取几张图片
+  const [imgType, setImgType] = useState(1)
+  const onChangeRadio = (ev) => {
+    console.log(ev.target.value);
+    setImgType(ev.target.value)
+  }
+  //图片
+  const [imageList, setImageList] = useState([])
+  const onUploadChange = (value) => {
+    console.log('上传', value);
+    setImageList(value.fileList)
+  }
   //提交表单
   const onFinish = async (form) => {
     // console.log(form);
     const { title, content, channel_id } = form
+    //校验封面类型
+    if (imageList.length !== imgType) {
+      return message.warning('封面图片和图片数量不匹配')
+    }
     const reqData = {
       title: title,
       content: content,
       cover: {
-        type: 0,
-        images: []
+        type: imgType,
+        images: imageList.map(item => item.response.data.url)
       },
       channel_id: channel_id
     }
     await createArticleAPI(reqData)
-    formRef.current.resetFields(['title', 'channel_id', 'content'])
+    formRef.current.resetFields(['title', 'channel_id', 'img', 'content'])
   }
   return (
     <div className="publish">
@@ -81,6 +98,27 @@ const Publish = () => {
             <Select placeholder="请选择文章频道" style={{ width: 400 }}>
               {channelList.map(item => <Option key={item.id} value={item.id}>{item.name}</Option>)}
             </Select>
+          </Form.Item>
+          <Form.Item label="封面" name="img">
+            <Form.Item name="type">
+              <Radio.Group onChange={onChangeRadio}>
+                <Radio value={1}>单图</Radio>
+                <Radio value={3}>三图</Radio>
+                <Radio value={0}>无图</Radio>
+              </Radio.Group>
+            </Form.Item>
+            {imgType > 0 && <Upload
+              name='image'
+              listType="picture-card"
+              maxCount={imgType}
+              showUploadList
+              action={'http://geek.itheima.net/v1_0/upload'}
+              onChange={onUploadChange}
+            >
+              <div style={{ marginTop: 8 }}>
+                <PlusOutlined />
+              </div>
+            </Upload>}
           </Form.Item>
           <Form.Item
             label="内容"
