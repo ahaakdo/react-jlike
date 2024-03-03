@@ -8,3 +8,12 @@ export function getChannelAPI () {
     method: 'GET',
   })
 }
+
+//新增文章
+export function createArticleAPI (data) {
+  return request({
+    url: '/mp/articles?draft=false',
+    method: 'POST',
+    data
+  })
+}

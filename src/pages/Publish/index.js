@@ -14,8 +14,8 @@ import { Link } from 'react-router-dom'
 import './index.scss'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
-import { useEffect, useState } from 'react'
-import { getChannelAPI } from '@/apis/article'
+import { useEffect, useRef, useState } from 'react'
+import { createArticleAPI, getChannelAPI } from '@/apis/article'
 
 
 const { Option } = Select
@@ -23,7 +23,6 @@ const { Option } = Select
 const Publish = () => {
   //获取频道列表
   const [channelList, setChannelList] = useState([])
-  const [open, setOpen] = useState(false)
   useEffect(() => {
     //封装函数调用接口
     const getChannelList = async () => {
@@ -32,6 +31,23 @@ const Publish = () => {
     }
     getChannelList()
   }, [])
+  const formRef = useRef()
+  //提交表单
+  const onFinish = async (form) => {
+    // console.log(form);
+    const { title, content, channel_id } = form
+    const reqData = {
+      title: title,
+      content: content,
+      cover: {
+        type: 0,
+        images: []
+      },
+      channel_id: channel_id
+    }
+    await createArticleAPI(reqData)
+    formRef.current.resetFields(['title', 'channel_id', 'content'])
+  }
   return (
     <div className="publish">
       <Card
@@ -47,6 +63,8 @@ const Publish = () => {
           labelCol={{ span: 4 }}
           wrapperCol={{ span: 16 }}
           initialValues={{ type: 1 }}
+          onFinish={onFinish}
+          ref={formRef}
         >
           <Form.Item
             label="标题"
