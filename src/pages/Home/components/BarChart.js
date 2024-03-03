@@ -29,7 +29,7 @@ const BarChart = ({ title }) => {
     };
     //使用图表参数完成渲染
     option && myChart.setOption(option);
-  }, [])
+  }, [title])
   return <div ref={chartRef} style={{ width: '500px', height: '400px', display: 'inline-block' }}></div>
 }
 
