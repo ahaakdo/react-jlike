@@ -11,7 +11,7 @@ import {
   message
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import './index.scss'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
@@ -38,6 +38,7 @@ const Publish = () => {
     setImageList(value.fileList)
   }
   //提交表单
+  const navigate = useNavigate()
   const onFinish = async (form) => {
     // console.log(form);
     const { title, content, channel_id } = form
@@ -56,6 +57,8 @@ const Publish = () => {
     }
     await createArticleAPI(reqData)
     formRef.current.resetFields(['title', 'channel_id', 'img', 'content'])
+    message.success('提交成功')
+    navigate('/article')
   }
   return (
     <div className="publish">
