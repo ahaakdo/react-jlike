@@ -1,0 +1,158 @@
+{
+  "ka": [
+    {
+      "type": "pay",
+      "money": -99,
+      "date": "2022-10-24 10:36:42",
+      "useFor": "drinks",
+      "id": "1"
+    },
+    {
+      "type": "pay",
+      "money": -88,
+      "date": "2022-10-24 10:37:51",
+      "useFor": "longdistance",
+      "id": "2"
+    },
+    {
+      "type": "income",
+      "money": 100,
+      "date": "2022-10-22 00:00:00",
+      "useFor": "bonus",
+      "id": "3"
+    },
+    {
+      "type": "pay",
+      "money": -33,
+      "date": "2022-09-24 16:15:41",
+      "useFor": "dessert",
+      "id": "4"
+    },
+    {
+      "type": "pay",
+      "money": -56,
+      "date": "2022-10-22T05:37:06.000Z",
+      "useFor": "drinks",
+      "id": "5"
+    },
+    {
+      "type": "pay",
+      "money": -888,
+      "date": "2022-10-28T08:21:42.135Z",
+      "useFor": "travel",
+      "id": "6"
+    },
+    {
+      "type": "income",
+      "money": 10000,
+      "date": "2023-03-20T06:45:54.004Z",
+      "useFor": "salary",
+      "id": "7"
+    },
+    {
+      "type": "pay",
+      "money": -10,
+      "date": "2023-03-22T07:17:12.531Z",
+      "useFor": "drinks",
+      "id": "8"
+    },
+    {
+      "type": "pay",
+      "money": -20,
+      "date": "2023-03-22T07:51:20.421Z",
+      "useFor": "dessert",
+      "id": "9"
+    },
+    {
+      "type": "pay",
+      "money": -100,
+      "date": "2023-03-22T09:18:12.898Z",
+      "useFor": "drinks",
+      "id": "17"
+    },
+    {
+      "type": "pay",
+      "money": -50,
+      "date": "2023-03-23T09:11:23.312Z",
+      "useFor": "food",
+      "id": "18"
+    },
+    {
+      "type": "pay",
+      "money": -100,
+      "date": "2023-04-04T03:03:15.617Z",
+      "useFor": "drinks",
+      "id": "19"
+    },
+    {
+      "type": "pay",
+      "money": -100,
+      "date": "2023-04-02T16:00:00.000Z",
+      "useFor": "food",
+      "id": "20"
+    },
+    {
+      "type": "income",
+      "money": 10000,
+      "date": "2023-02-28T16:00:00.000Z",
+      "useFor": "salary",
+      "id": "21"
+    },
+    {
+      "id": "0628",
+      "type": "pay",
+      "money": -6666,
+      "date": "2024-02-28T12:11:00.389Z",
+      "useFor": "audio"
+    },
+    {
+      "id": "f0f6",
+      "type": "pay",
+      "money": -8888,
+      "date": "2024-02-28T12:11:49.480Z",
+      "useFor": "dessert"
+    },
+    {
+      "id": "450e",
+      "type": "pay",
+      "money": -222,
+      "date": "2024-02-20T16:00:00.000Z",
+      "useFor": "drinks"
+    },
+    {
+      "id": "3548",
+      "type": "income",
+      "money": 30000,
+      "date": "2024-01-27T16:00:00.000Z",
+      "useFor": "bonus"
+    },
+    {
+      "id": "4ac7",
+      "type": "income",
+      "money": 333,
+      "date": "2024-02-18T16:00:00.000Z",
+      "useFor": "cashgift"
+    },
+    {
+      "id": "f064",
+      "type": "pay",
+      "money": -98,
+      "date": "2024-03-03",
+      "useFor": "dessert"
+    },
+    {
+      "id": "bc8c",
+      "type": "income",
+      "money": 10111,
+      "date": "2024-03-05",
+      "useFor": "bonus"
+    },
+    {
+      "id": "0eac",
+      "type": "pay",
+      "money": -1108,
+      "date": "2024-03-05",
+      "useFor": "drinks"
+    }
+  ]
+}

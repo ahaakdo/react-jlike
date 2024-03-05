@@ -11,12 +11,12 @@ import {
   message
 } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import './index.scss'
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
-import { useRef, useState } from 'react'
-import { createArticleAPI } from '@/apis/article'
+import { useEffect, useRef, useState } from 'react'
+import { createArticleAPI, getArticleByIdAPI, putArticleByIdAPI } from '@/apis/article'
 import { useChannel } from '@/hooks/useChannel'
 
 
@@ -33,6 +33,33 @@ const Publish = () => {
   }
   //图片
   const [imageList, setImageList] = useState([])
+  //回填数据
+  const [searchParams] = useSearchParams()
+  const articleId = searchParams.get('id')
+  //获取实例
+  const [form] = Form.useForm()
+  console.log(articleId);
+  useEffect(() => {
+    const getArticleDetail = async () => {
+      const res = await getArticleByIdAPI(articleId)
+      const data = res.data
+      const { cover } = data
+      form.setFieldsValue({
+        ...data,
+        type: cover.type,
+      })
+      setImgType(cover.type)
+      //显示图片
+      setImageList(cover.images.map(url => {
+        return { url }
+      }))
+    }
+    if (articleId) {
+      getArticleDetail()
+    }
+
+  }, [articleId, form])
+
   const onUploadChange = (value) => {
     console.log('上传', value);
     setImageList(value.fileList)
@@ -51,22 +78,37 @@ const Publish = () => {
       content: content,
       cover: {
         type: imgType,
-        images: imageList.map(item => item.response.data.url)
+        images: imageList.map(item => {
+          if (item.response) {
+            return item.response.data.url
+          } else {
+            return item.url
+          }
+        })
       },
       channel_id: channel_id
     }
-    await createArticleAPI(reqData)
+    //新增接口
+    if (articleId) {
+      await putArticleByIdAPI({ ...reqData, id: articleId })
+    } else {
+      await createArticleAPI(reqData)
+    }
     formRef.current.resetFields(['title', 'channel_id', 'img', 'content'])
     message.success('提交成功')
     navigate('/article')
+  }
+  const reload = () => {
+    // navigate('/')
+    // window.location.reload()
   }
   return (
     <div className="publish">
       <Card
         title={
           <Breadcrumb items={[
-            { title: <Link to={'/'}>首页</Link> },
-            { title: '发布文章' },
+            { title: <Link to={'/'} onClick={reload}>首页</Link> },
+            { title: articleId ? '编辑文章' : '发布文章' },
           ]}
           />
         }
@@ -77,6 +119,7 @@ const Publish = () => {
           initialValues={{ type: 1 }}
           onFinish={onFinish}
           ref={formRef}
+          form={form}
         >
           <Form.Item
             label="标题"
@@ -109,6 +152,7 @@ const Publish = () => {
               showUploadList
               action={'http://geek.itheima.net/v1_0/upload'}
               onChange={onUploadChange}
+              fileList={imageList}
             >
               <div style={{ marginTop: 8 }}>
                 <PlusOutlined />

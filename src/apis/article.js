@@ -34,3 +34,20 @@ export function deleteArticleAPI (id) {
     method: 'DELETE',
   })
 }
+
+//获取指定文章详情
+export function getArticleByIdAPI (target) {
+  return request({
+    url: `/mp/articles/${target}`,
+    method: 'GET',
+  })
+}
+
+//更新文章
+export function putArticleByIdAPI (data) {
+  return request({
+    url: `/mp/articles/${data.id}?draft=false`,
+    method: 'PUT',
+    data
+  })
+}

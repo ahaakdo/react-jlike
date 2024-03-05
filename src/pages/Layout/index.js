@@ -4,6 +4,8 @@ import {
   DiffOutlined,
   EditOutlined,
   LogoutOutlined,
+  BarChartOutlined,
+  PlusCircleOutlined
 } from '@ant-design/icons'
 import './index.scss'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
@@ -30,6 +32,21 @@ const items = [
     key: '/publish',
     icon: <EditOutlined />,
   },
+  {
+    label: '月度账单',
+    key: '/account',
+    icon: <BarChartOutlined />
+  },
+  {
+    label: '年度账单',
+    key: '/year',
+    icon: <BarChartOutlined />
+  },
+  {
+    label: '添加账单',
+    key: '/add',
+    icon: <PlusCircleOutlined />
+  }
 ]
 
 const GeekLayout = () => {
@@ -41,7 +58,7 @@ const GeekLayout = () => {
   }
   //反向高亮
   const location = useLocation()
-  // console.log(location.pathname);
+  // console.log(location.pathname);  
   //获取个人信息
   const dispatch = useDispatch()
   const name = useSelector(state => state.user.userInfo.name)
@@ -72,10 +89,12 @@ const GeekLayout = () => {
           <Menu
             mode="inline"
             theme="dark"
+            defaultOpenKeys={location.pathname}
             defaultSelectedKeys={location.pathname}
             items={items}
             style={{ height: '100%', borderRight: 0 }}
-            onClick={onMenuClick}></Menu>
+            onClick={onMenuClick}
+            selectedKeys={location.pathname}></Menu>
         </Sider>
         <Layout className="layout-content" style={{ padding: 20 }}>
           <Outlet />

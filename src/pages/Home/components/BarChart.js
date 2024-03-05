@@ -15,14 +15,14 @@ const BarChart = ({ title }) => {
       },
       xAxis: {
         type: 'category',
-        data: ['vue', 'react', 'Angular']
+        data: ['vue', 'react', 'Angular', 'nodejs']
       },
       yAxis: {
         type: 'value'
       },
       series: [
         {
-          data: [60, 40, 30],
+          data: [60, 40, 30, 50],
           type: 'bar'
         }
       ]
@@ -30,7 +30,7 @@ const BarChart = ({ title }) => {
     //使用图表参数完成渲染
     option && myChart.setOption(option);
   }, [title])
-  return <div ref={chartRef} style={{ width: '500px', height: '400px', display: 'inline-block' }}></div>
+  return <div ref={chartRef} style={{ width: '600px', height: '400px', display: 'inline-block' }}></div>
 }
 
 export default BarChart
