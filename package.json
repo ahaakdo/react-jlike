@@ -2,7 +2,6 @@
   "name": "react-jlike",
   "version": "0.1.0",
   "private": true,
-  "homepage": "./",
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.1",
     "@testing-library/jest-dom": "^5.17.0",
@@ -19,6 +18,7 @@
     "react-redux": "^9.1.0",
     "react-router-dom": "^6.22.2",
     "react-scripts": "5.0.1",
+    "source-map-explorer": "^2.5.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -26,7 +26,8 @@
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject",
-    "server": "json-server ./server/data.json --port 8888"
+    "server": "json-server ./server/data.json --port 8888",
+    "analyze": "source-map-explorer 'build/static/js/*.js'"
   },
   "eslintConfig": {
     "extends": [

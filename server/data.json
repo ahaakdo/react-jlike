@@ -153,6 +153,13 @@
       "money": -1108,
       "date": "2024-03-05",
       "useFor": "drinks"
+    },
+    {
+      "id": "0096",
+      "type": "pay",
+      "money": -10000,
+      "date": "2024-03-06",
+      "useFor": "home"
     }
   ]
 }
